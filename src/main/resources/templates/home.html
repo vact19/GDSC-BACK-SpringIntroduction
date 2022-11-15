@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:value="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>home</title>
   <h1>home.HTML</h1>
 </head>
 <body>
+
+<a href="login">로그인해</a>
+
+<div th:each="member : ${members}">
+  <strong th:text="${member.username}">이름</strong>
+  <strong th:text="${member.password}">이름</strong>
+</div>
+
+
+
 
 </body>
 </html>
