@@ -49,6 +49,7 @@ public class LoginController {
         if(bindingResult.hasErrors()){
             return "signup";
         }
+        //
 
         memberService.save(member);
         return "redirect:/?signup=ok";
