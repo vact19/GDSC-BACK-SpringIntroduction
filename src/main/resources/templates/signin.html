@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:value="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<body>
+
+<form action="signin" method="post" enctype="application/x-www-form-urlencoded">
+    <!-- th:field는 변수명으로 id, name ,value 설정-->
+    <label>ID</label>
+    <input type="text" th:field ="${member.username}" >
+    <p>
+    <label>PWD</label>
+    <input type="password" id="password" name="password" th:value="${member.password}">
+    <p>
+  <button type="submit">로그인해</button>
+</form>
+</body>
+</html>

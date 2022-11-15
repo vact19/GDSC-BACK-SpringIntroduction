@@ -23,4 +23,12 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    // 로그인 시도한 회원정보 검증
+    public void validate(Member member) {
+        Member foundMember = MemberRepository.memberMap.get(member.getUsername());
+
+        if ( !passwordEncoder.matches(member.getPassword(), foundMember.getPassword())){
+            throw new IllegalArgumentException("비밀번호 틀림");
+        }
+    }
 }

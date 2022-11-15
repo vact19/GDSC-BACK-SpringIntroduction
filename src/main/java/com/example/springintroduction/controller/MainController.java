@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -22,6 +24,17 @@ public class MainController {
         model.addAttribute("members", members);
         // model.addAttribute(members); // attributeName memberList
         return "home";
+    }
+
+    @GetMapping("/formembers")
+    public String onlyForMembers(HttpServletRequest request){
+        // getSession(true(default)) JsessionID 쿠키값에 맞는 세션이 있으면 그걸 가져오고, 없으면 새로 생성
+        // getSession(false) JsessionID 쿠키값에 맞는 세션이 있으면 그걸 가져오고, 없으면 새로 생성
+        HttpSession session = request.getSession(false);
+        if ( session == null || session.getAttribute("sessionUsername") == null){
+            return "redirect:/";
+        }
+        return "forMembers";
     }
 
     @PostConstruct
