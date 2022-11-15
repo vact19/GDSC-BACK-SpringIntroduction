@@ -6,6 +6,7 @@
   <h1>home.HTML</h1>
 </head>
 <body>
+<!-- th:if는 조건이 false일 경우 태그 자체가 무시됨 -->
 <h2 th:if="${session.sessionUsername==null}">게스트 안녕</h2>
 <h2 th:if="${session.sessionUsername !=null}" th:text="|${session.sessionUsername} 안녕|"></h2>
 <a href="signin">로그인해</a>
@@ -20,9 +21,10 @@
 
 <hr>
 <h2>유저목록</h2>
+<!-- member 리스트의 원소들이 하나씩 <strong>태그 두 줄을 실행한다.-->
 <div th:each="member : ${members}">
   <strong th:text="${member.username}">이름</strong>
-  <strong th:text="${member.password}">이름</strong>
+  <strong th:text="${member.password}">비밀번호</strong>
 </div>
 
 

@@ -13,6 +13,8 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
+    // Member 객체 저장.
+    // 비즈니스 로직은 Service 클래스가 수행, 저장은 Service 클래스가 Repository 클래스에게 맡긴다.
     public void save(Member member){
         String encoded = passwordEncoder.encode(member.getPassword());
         member.setPassword(encoded);

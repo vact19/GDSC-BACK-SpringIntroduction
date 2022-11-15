@@ -7,13 +7,17 @@
 <body>
 
 <form action="signin" method="post" enctype="application/x-www-form-urlencoded">
-    <!-- th:field는 변수명으로 id, name ,value 설정-->
+
     <label>ID</label>
+    <!-- th:field는 변수명으로 id, name ,value 설정-->
     <input type="text" th:field ="${member.username}" >
     <p>
+
     <label>PWD</label>
+    <!-- 위의 th:field는 실제로는 아래와 비슷하게 적용된다. -->
     <input type="password" id="password" name="password" th:value="${member.password}">
     <p>
+
   <button type="submit">로그인해</button>
 </form>
 </body>

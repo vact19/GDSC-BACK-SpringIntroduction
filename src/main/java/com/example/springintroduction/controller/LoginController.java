@@ -14,24 +14,32 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+// 회원가입과 인증을 맡은 컨트롤러
 @Controller
 @RequiredArgsConstructor
 public class LoginController {
 
     private final MemberService memberService;
 
+    // 해당 path의 Get 요청 시 실행
     @GetMapping("/signin")
     public String signInPage(Model model){
 //        Member member = new Member();
 //        model.addAttribute("member", member);
+        /** 위 주석과 아래 한 줄의 코드는 같은 효과 */
         model.addAttribute(new Member());
         return "signin";
     }
 
+    // 해당 path의 POST 요청 시 실행
     @PostMapping("/signin")
     // @ModelAttribute는 자동으로 Model.addAttribute(member) 실행한다.
     public String signIn(@ModelAttribute Member member, HttpServletRequest request){
+
+        // 로그인 시도한 데이터를 기반으로 비밀번호 검사
         memberService.validate(member);
+
+        // 세션을 생성한다. 응답에 자동으로 JSESSIONID 쿠키를 보낸다.
         HttpSession session = request.getSession();
         session.setAttribute("sessionUsername", member.getUsername());
         return "redirect:/?signin=ok";
@@ -45,11 +53,17 @@ public class LoginController {
 
     @PostMapping("/signup")
     // @ModelAttribute는 자동으로 Model.addAttribute(member) 실행한다.
+    // 클래스에 @Valid 어노테이션 적용시키고, 필드에 제약조건 달아 검증하기.
     public String signUp(@ModelAttribute @Valid Member member, BindingResult bindingResult){
+        /**
+        // Member 객체 데이터 바인딩에 문제가 생길 경우 되돌아감.
+        // 바인딩에 실패한 member 객체를 model에 다시 담아서 signUp 페이지를 보여주기 때문에,
+           사용자 입력값 검증에 실패하더라도 사용자가 입력한 데이터가 그대로 남아있다.
+         */
         if(bindingResult.hasErrors()){
             return "signup";
         }
-        //
+
 
         memberService.save(member);
         return "redirect:/?signup=ok";
@@ -63,6 +77,7 @@ public class LoginController {
 
     @PostMapping("/signout")
     public String signOut(HttpServletRequest request){
+        // 세션 만료
         request.getSession().invalidate();
         return "redirect:/";
     }

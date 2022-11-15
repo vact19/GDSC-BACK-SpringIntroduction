@@ -12,6 +12,7 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 public class Member {
 
+
     @Length(min = 2, max = 8, message = "2~8자 사이로 해")
     private String username;
 

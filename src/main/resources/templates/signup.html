@@ -10,18 +10,21 @@
     <!-- th:field는 modelattribute의 변수명으로 id, name ,value 설정-->
     <label>ID</label>
     <input type="text" th:field ="${member.username}" >
+
+    <!-- 아래는 해당 필드에 에러가 발생할 경우, 미리 설정한 에러메시지를 표시한다. -->
     <strong th:if= "${#fields.hasErrors('${member.username}')}"  th:errors="${member.username}" style="color: red">
         fsdf</strong>
 
     <p>
     <label>PWD</label>
     <input type="password" id="password" name="password" th:value="${member.password}">
+
+     <!-- 아래는 해당 필드에 에러가 발생할 경우, 미리 설정한 에러메시지를 표시한다. -->
     <strong th:if= "${#fields.hasErrors('${member.password}')}"  th:errors="${member.password}" style="color: red">
             fsdf</strong>
 
     <p>
-
-  <button type="submit">회원가입해</button>
+    <button type="submit">회원가입해</button>
 </form>
 </body>
 </html>
