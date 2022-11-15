@@ -19,4 +19,9 @@ public class MemberRepository {
         Collection<Member> values =  memberMap.values();
         return new ArrayList<>(values);
     }
+
+    // 이름으로 찾기
+    public List<Member> findByUsername(String username) {
+        return List.of(memberMap.get(username));
+    }
 }

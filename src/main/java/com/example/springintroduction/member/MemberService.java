@@ -21,8 +21,14 @@ public class MemberService {
         memberRepository.save(member);
     }
 
+    // 전체 조회, repository class에 기능 단순 위임
     public List<Member> findAll(){
         return memberRepository.findAll();
+    }
+
+    // 이름으로 단건 조회, repository class에 기능 단순 위임
+    public List<Member> findByUsername(String username){
+        return memberRepository.findByUsername(username);
     }
 
     // 로그인 시도한 회원정보 검증
