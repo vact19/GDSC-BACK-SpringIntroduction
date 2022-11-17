@@ -21,9 +21,10 @@ public class SpringLoginController {
         this.login = login;
     }
 
-    // 스프링 애플리케이션 시작 직후 실행됨
+    // @PostConstruct 스프링 애플리케이션 시작 직후 의존성 주입이 끝나면 실행됨
     @PostConstruct
-    // main() 메소드 대신
+    // nospring 패키지의 LoginController.java 파일의 main() 메소드와는 다른 아주 간단한 한줄코드
+    // public static void main() 메소드 대신 사용하였다.
     public void login(){
         login.doLogin();
     }
