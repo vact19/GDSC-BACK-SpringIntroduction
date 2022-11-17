@@ -7,7 +7,14 @@
 </head>
 <body>
 <!-- th:if는 조건이 false일 경우 태그 자체가 무시됨 -->
+<!-- session.sessionUsername이란? PostMapping("/signin") 메소드에서 등록해두었던
+session.setAttribute("sessionUsername", member.getUsername());
+세션 속성의 key값이다. 속성 key 값을
+session.setAttribute("clientUsername", member.getUsername()); 등으로 바꿔도 상관없다.
+-->
 <h2 th:if="${session.sessionUsername==null}">게스트 안녕</h2>
+
+<!-- th:text에서 model에 실려온 값과 다른 값을 붙여서 출력하고 싶으면. 수직선을 양옆에 붙여준다. |${} 안녕|-->
 <h2 th:if="${session.sessionUsername !=null}" th:text="|${session.sessionUsername} 안녕|"></h2>
 <a href="signin">로그인해</a>
 <a href="signup">회원가입해</a>
@@ -19,6 +26,9 @@
 </form>
 <br>
 
+<hr>
+타임리프에서 th:text="${}"란, Model에 실려온 데이터들을 출력한다는 의미이다. <p>
+아래 strong th:text 에서, "이름" 과 "비밀번호" 출력은 무시되고 Model에 실려온 데이터들이 출력된다.
 <hr>
 <h2>유저목록</h2>
 <!-- member 리스트의 원소들이 하나씩 <strong>태그 두 줄을 실행한다.-->
