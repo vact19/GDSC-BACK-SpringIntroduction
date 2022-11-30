@@ -37,7 +37,7 @@ public class MainController {
     /**
      *  RequiredArgsConstructor는 final 필드를 파라미터로 받는 생성자를 만든다.
      *  RequiredArgsConstructor + final 필드의 조합은 아래 주석처리한 생성자를 만들고, @Autowired까지 자동 생성되어
-     *  생성자 기반의 의존성 주입이 가능해지게 한다.
+     *  생성자 기반의 의존성 주입이 가능해지게 한다. !
      */
 
     /** @Autowired : 해당 메소드 혹은 생성자의 파라미터가 스프링에서 관리하는 클래스 (스프링 빈으로 등록된 클래스) 일 경우, 의존성 주입을 실행함.*/
